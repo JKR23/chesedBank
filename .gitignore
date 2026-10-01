@@ -1,5 +1,9 @@
-###Local properties
+### Local properties
 src/main/resources/application-local.yml
 
-###script for setting profiles_active and password ( for run it => . .\env.ps1)
+### Script for setting profiles_active and password
 ./powershellscript/env.ps1
+
+### IntelliJ IDEA
+.idea/
+*.iml
