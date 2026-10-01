@@ -1,0 +1,5 @@
+###Local properties
+src/main/resources/application-local.yml
+
+###script for setting profiles_active and password ( for run it => . .\env.ps1)
+./powershellscript/env.ps1
