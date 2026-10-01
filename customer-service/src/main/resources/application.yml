@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: customer-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/customer_db
+    username: postgres
+    password: ${DB_PASSWORD}
+
+  jpa:
+    #Don't create or modify my database tables. Just verify that the database structure matches my entities."
+    hibernate:
+      ddl-auto: validate
+
+    #Prints every SQL query Hibernate generates to the console.
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enable: true;

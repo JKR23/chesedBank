@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: customer-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/customer_db
+    username: postgres
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      auto-ddl: validate
+
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+    flyway:
+      enable: true
+
