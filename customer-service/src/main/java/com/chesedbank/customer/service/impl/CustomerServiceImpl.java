@@ -4,6 +4,7 @@ import com.chesedbank.customer.dto.CustomerCreateRequest;
 import com.chesedbank.customer.dto.CustomerResponse;
 import com.chesedbank.customer.dto.CustomerUpdateRequest;
 import com.chesedbank.customer.entity.Customer;
+import com.chesedbank.customer.exception.CustomerNotFoundException;
 import com.chesedbank.customer.mapper.CustomerMapper;
 import com.chesedbank.customer.repository.CustomerRepository;
 import com.chesedbank.customer.service.CustomerService;
@@ -76,7 +77,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void deleteCustomer(UUID publicIdCustomer) {
         //get customer or throw exception if not present
-        Customer customer =findCustomerWithPublicId(publicIdCustomer);
+        Customer customer = findCustomerWithPublicId(publicIdCustomer);
 
         //delete customer
         repository.delete(customer); //use boolean instead of deleting user completely
@@ -85,6 +86,6 @@ public class CustomerServiceImpl implements CustomerService {
     private Customer findCustomerWithPublicId(UUID publicIdCustomer){
         //get customer or throw exception if not present
         return repository.findByPublicIdCustomer(publicIdCustomer)
-                .orElseThrow(()->new RuntimeException("Customer doesn't exist with ID: "+publicIdCustomer));
+                .orElseThrow(()->new CustomerNotFoundException("No customer found with ID: "+publicIdCustomer));
     }
 }
