@@ -47,7 +47,8 @@ public class Customer {
             name = "email",
             nullable = false,
             length = 50,
-            unique = true
+            unique = true,
+            updatable = false
     )
     private String email;
 
@@ -74,10 +75,30 @@ public class Customer {
     // CascadeType.ALL: operations on Customer are propagated to its addresses
     // orphanRemoval = true: an address removed from this collection is deleted
     //new ArrayList<>(): for having an empty collection instead of null
+    @Builder.Default //initialize List
     @OneToMany(
             mappedBy = "customer",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private List<CustomerAddress> addresses = new ArrayList<>();
+
+    @PrePersist
+    protected void onCreate(){
+        //if publicId is null, generate it
+        if(this.publicIdCustomer==null){
+            this.publicIdCustomer = UUID.randomUUID();
+        }
+
+        LocalDateTime now = LocalDateTime.now();
+
+        this.createdAt = now;
+
+        this.updatedAt = now;
+    }
+
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = LocalDateTime.now();
+    }
 }
