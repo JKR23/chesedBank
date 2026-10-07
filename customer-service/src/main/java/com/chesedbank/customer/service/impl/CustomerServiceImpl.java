@@ -83,7 +83,7 @@ public class CustomerServiceImpl implements CustomerService {
         repository.delete(customer); //use boolean instead of deleting user completely
     }
 
-    private Customer findCustomerWithPublicId(UUID publicIdCustomer){
+    protected Customer findCustomerWithPublicId(UUID publicIdCustomer){
         //get customer or throw exception if not present
         return repository.findByPublicIdCustomer(publicIdCustomer)
                 .orElseThrow(()->new CustomerNotFoundException("No customer found with ID: "+publicIdCustomer));
