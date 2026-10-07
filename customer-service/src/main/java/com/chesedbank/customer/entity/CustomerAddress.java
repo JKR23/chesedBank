@@ -55,4 +55,22 @@ public class CustomerAddress {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
+    @PrePersist
+    protected void onCreate(){
+        if(this.publicIdAddress==null){
+            this.publicIdAddress = UUID.randomUUID();
+        }
+
+        LocalDateTime now = LocalDateTime.now();
+
+        this.createdAt = now;
+
+        this.updatedAt = now;
+    }
+
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = LocalDateTime.now();
+    }
+
 }

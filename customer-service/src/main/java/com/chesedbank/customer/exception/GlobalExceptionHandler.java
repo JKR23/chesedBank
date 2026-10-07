@@ -31,6 +31,21 @@ public class GlobalExceptionHandler {
                 .body(er);
     }
 
+    @ExceptionHandler(CustomerAddressNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handlerCustomerAddressNotFoundException(CustomerAddressNotFoundException e){
+
+        ErrorResponse er = new ErrorResponse(
+                LocalDateTime.now(),
+                404,
+                "Not found",
+                e.getMessage()
+        );
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(er);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationErrorResponse> handlerMethodArgumentNotValidException(MethodArgumentNotValidException e){
         Map<String, String> fieldErrors = e.getBindingResult() //get the validation errors
