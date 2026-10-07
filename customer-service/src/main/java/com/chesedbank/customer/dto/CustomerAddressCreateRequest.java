@@ -1,6 +1,8 @@
 package com.chesedbank.customer.dto;
 
+import com.chesedbank.customer.entity.AddressType;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record CustomerAddressCreateRequest(
@@ -29,8 +31,8 @@ public record CustomerAddressCreateRequest(
         @Size(max = 100, message = "country should not be over 100 characters")
         String country,
 
-        @NotBlank(message = "address type should not be empty")
-        @Size(max = 30, message = "address type should not be over 30 characters")
-        String addressType
+        //NotNull : because enum is an object and not a String
+        @NotNull(message = "address type should not be empty or null")
+        AddressType addressType
 ) {
 }

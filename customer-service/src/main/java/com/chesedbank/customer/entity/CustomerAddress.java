@@ -46,8 +46,10 @@ public class CustomerAddress {
     @Column(name = "country", nullable = false, length = 100)
     private String country;
 
+    //EnumType.STRING : in the db (e.g : HOME,WORK,MAILING,OTHER instead of 0,1,2...)
+    @Enumerated(EnumType.STRING)
     @Column(name = "address_type", nullable = false, length = 30)
-    private String addressType;
+    private AddressType addressType;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

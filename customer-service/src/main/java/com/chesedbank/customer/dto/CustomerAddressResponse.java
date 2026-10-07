@@ -1,5 +1,7 @@
 package com.chesedbank.customer.dto;
 
+import com.chesedbank.customer.entity.AddressType;
+
 import java.util.UUID;
 
 public record CustomerAddressResponse(
@@ -10,7 +12,7 @@ public record CustomerAddressResponse(
         String province,
         String postalCode,
         String country,
-        String addressType
+        AddressType addressType
 ) {
 
 }
