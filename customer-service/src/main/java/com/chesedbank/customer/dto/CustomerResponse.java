@@ -1,5 +1,6 @@
 package com.chesedbank.customer.dto;
 
+import java.util.List;
 import java.util.UUID;
 
 public record CustomerResponse(
@@ -7,5 +8,8 @@ public record CustomerResponse(
         String firstName,
         String lastName,
         String email,
-        String phone
+        String phone,
+
+        //map-struct will map the CustomerAddress to response automatically
+        List<CustomerAddressResponse> addresses
 ) { }
