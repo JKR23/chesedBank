@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: account-service
+
+  datasource:
+    username: postgres
+    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/account_db
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
+
+  flyway:
+    enable: true
