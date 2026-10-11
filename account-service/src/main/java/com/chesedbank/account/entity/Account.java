@@ -28,14 +28,15 @@ public class Account {
     private UUID publicIdCustomer;
 
     @Column(name = "account_number", nullable = false, updatable = false, unique = true, length = 20)
-    private String accountNumber;
+    private String accountNumber;//must be generated
 
     @Enumerated(EnumType.STRING)
     @Column(name = "account_type", nullable = false, length = 30)
     private AccountType accountType;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "currency", nullable = false, length = 3)
-    private String currency;
+    private Currency currency;
 
     @Builder.Default //accept to initialize
     @Column(name = "balance", nullable = false)
@@ -43,7 +44,7 @@ public class Account {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
-    private Status status;
+    private Status status = Status.ACTIVE; //default active
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -53,11 +54,11 @@ public class Account {
 
     @PrePersist
     protected void onCreate(){
+
         //generate public id account
         if(this.publicIdAccount==null){
             this.publicIdAccount = UUID.randomUUID();
         }
-
 
         LocalDateTime now = LocalDateTime.now();
 
