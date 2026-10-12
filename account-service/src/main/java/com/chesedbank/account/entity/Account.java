@@ -42,6 +42,7 @@ public class Account {
     @Column(name = "balance", nullable = false)
     private BigDecimal balance = BigDecimal.ZERO; //initialize account
 
+    @Builder.Default //accept to initialize
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
     private Status status = Status.PENDING; //default pending
