@@ -1,7 +1,7 @@
 package com.chesedbank.account.mapper;
 
-import com.chesedbank.account.dto.AccountCreateRequest;
-import com.chesedbank.account.dto.AccountResponse;
+import com.chesedbank.account.dto.request.AccountCreateRequest;
+import com.chesedbank.account.dto.response.AccountResponse;
 import com.chesedbank.account.entity.Account;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -9,7 +9,7 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(
         componentModel = "spring",
-        unmappedTargetPolicy = ReportingPolicy.ERROR
+        unmappedTargetPolicy = ReportingPolicy.ERROR //report unmapped target properties at compile time
 )
 public interface AccountMapper {
 

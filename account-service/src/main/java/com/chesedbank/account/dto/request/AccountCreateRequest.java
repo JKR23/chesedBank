@@ -1,4 +1,4 @@
-package com.chesedbank.account.dto;
+package com.chesedbank.account.dto.request;
 
 import com.chesedbank.account.entity.AccountType;
 import com.chesedbank.account.entity.Currency;
