@@ -28,7 +28,7 @@ public class Account {
     private UUID publicIdCustomer;
 
     @Column(name = "account_number", nullable = false, updatable = false, unique = true, length = 20)
-    private String accountNumber;//must be generated
+    private String accountNumber;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "account_type", nullable = false, length = 30)
@@ -44,7 +44,7 @@ public class Account {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
-    private Status status = Status.ACTIVE; //default active
+    private Status status = Status.PENDING; //default pending
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

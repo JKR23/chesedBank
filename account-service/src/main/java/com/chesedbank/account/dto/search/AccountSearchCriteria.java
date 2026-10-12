@@ -1,4 +1,4 @@
-package com.chesedbank.account.dto;
+package com.chesedbank.account.dto.search;
 
 import com.chesedbank.account.entity.AccountType;
 import com.chesedbank.account.entity.Currency;
@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public record AccountResponse(
+public record AccountSearchCriteria(
         UUID publicIdAccount,
         UUID publicIdCustomer,
         String accountNumber,
@@ -16,7 +16,9 @@ public record AccountResponse(
         Currency currency,
         BigDecimal balance,
         Status status,
-        LocalDateTime createdAt,
-        LocalDateTime updatedAt
+        BigDecimal minBalance,
+        BigDecimal maxBalance,
+        LocalDateTime createdAfter,
+        LocalDateTime createdBefore
 ) {
 }
