@@ -7,6 +7,7 @@ import com.chesedbank.account.dto.search.AccountSearchCriteria;
 import com.chesedbank.account.dto.search.AccountSpecification;
 import com.chesedbank.account.entity.Account;
 import com.chesedbank.account.entity.Status;
+import com.chesedbank.account.exception.AccountNotFoundException;
 import com.chesedbank.account.mapper.AccountMapper;
 import com.chesedbank.account.repository.AccountRepository;
 import com.chesedbank.account.service.AccountService;
@@ -66,7 +67,7 @@ public class AccountServiceImpl implements AccountService {
 
         //get account or throw exception if not present
         Account account = repository.findByPublicIdAccountAndPublicIdCustomer(publicIdAccount, publicIdCustomer)
-                .orElseThrow(() -> new RuntimeException("None account find with ID: " + publicIdAccount + " for customer ID: " + publicIdCustomer));
+                .orElseThrow(() -> new AccountNotFoundException("Account not found with ID: " + publicIdAccount + " for customer ID: " + publicIdCustomer));
 
         //check current status and new status
         checkCurrentStatusAndNewStatus(account, newStatus);
@@ -142,7 +143,7 @@ public class AccountServiceImpl implements AccountService {
     private Account findAccountWithPublicIdAccount(UUID publicIdAccount){
 
         return repository.findByPublicIdAccount(publicIdAccount).orElseThrow(
-                ()->new RuntimeException("None account find with ID: "+publicIdAccount)
+                ()->new AccountNotFoundException("Account not found with ID: "+publicIdAccount)
         );
     }
 
